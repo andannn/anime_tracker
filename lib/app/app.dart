@@ -17,8 +17,7 @@ class AniflowApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) =>
-          GetItScope.of(context).get<AppBloc>(),
+      create: (BuildContext context) => GetItScope.of(context).get<AppBloc>(),
       child: Builder(
         builder: (context) {
           return BlocBuilder<AppBloc, AppState>(
@@ -59,16 +58,25 @@ class _DynamicColorAppState extends State<DynamicColorApp> {
           seedColor: darkDynamic?.primary ?? brandColor,
           brightness: Brightness.dark,
         );
+        const pageTransitionsTheme = PageTransitionsTheme(
+          builders: <TargetPlatform, PageTransitionsBuilder>{
+            TargetPlatform.android: PredictiveBackPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          },
+        );
+
         return MaterialApp.router(
           restorationScopeId: "root",
           themeMode: _getThemeMode(widget.themeSetting),
           theme: ThemeData(
             useMaterial3: true,
             colorScheme: lightColorScheme,
+            pageTransitionsTheme: pageTransitionsTheme,
           ),
           darkTheme: ThemeData(
             useMaterial3: true,
             colorScheme: darkColorScheme,
+            pageTransitionsTheme: pageTransitionsTheme,
           ),
           localizationsDelegates: const [
             AppLocalizations.delegate,
