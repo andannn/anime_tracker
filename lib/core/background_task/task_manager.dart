@@ -15,7 +15,7 @@ mixin BackgroundTaskName {
       'sync_new_released_play_source_task';
 }
 
-@LazySingleton(env: [AfEnvironment.mobile])
+@Singleton(env: [AfEnvironment.mobile])
 class BackgroundTaskManager {
   BackgroundTaskManager(this._authRepository, this._workManager) {
     _authRepository.getAuthedUserStream().distinct().listen((userOrNull) {

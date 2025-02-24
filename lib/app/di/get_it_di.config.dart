@@ -701,7 +701,7 @@ extension GetItInjectableX on _i174.GetIt {
         _Desktop,
       },
     );
-    gh.lazySingleton<_i490.BackgroundTaskManager>(
+    gh.singleton<_i490.BackgroundTaskManager>(
       () => _i490.BackgroundTaskManager(
         gh<_i768.AuthRepository>(),
         gh<_i500.Workmanager>(),
